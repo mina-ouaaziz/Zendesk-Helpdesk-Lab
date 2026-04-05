@@ -148,6 +148,59 @@ Vue d'ensemble des 4 tickets résolus dans ce lab :
 
 ---
 
+---
+
+## ⚡ Déclencheurs configurés
+
+Les déclencheurs s'exécutent automatiquement à chaque création ou mise à jour d'un ticket. J'en ai configuré 4 pour automatiser la qualification et le routage des incidents.
+
+![Tableau de bord déclencheurs](https://github.com/user-attachments/assets/78efc9a4-fcf2-4a78-9aac-088f924437d3)
+
+| Déclencheur | Condition | Action automatique |
+|---|---|---|
+| `Auto-tag – Mot de passe` | Sujet contient "mot de passe / password / mdp" | Ajoute le tag `reset-mdp` |
+| `Auto-tag VPN` | Sujet contient "VPN / réseau / connexion" | Ajoute le tag `vpn` |
+| `Auto-tag – Matériel` | Sujet contient "imprimante / écran / clavier..." | Ajoute le tag `materiel` |
+| `Notification – Ticket urgent non assigné` | Ticket Urgent + non assigné + Ouvert | Passe le statut en `En cours` |
+
+> **Choix de conception :** l'auto-tagging permet de qualifier automatiquement les tickets dès leur création, sans intervention manuelle de l'agent. Cela facilite le filtrage par vue et la génération de rapports par catégorie d'incident.
+
+---
+
+## 🕐 Automatismes configurés
+
+Les automatismes s'exécutent sur une base de temps, indépendamment des actions des agents ou des utilisateurs. J'en ai configuré 2 pour gérer le cycle de vie des tickets inactifs.
+
+![Tableau de bord automatismes](https://github.com/user-attachments/assets/00bf4670-5693-4e22-b668-92451ff4fdd1)
+
+### Automatisme 1 — Relance client en attente depuis 48h
+
+**Logique :** si un ticket reste En attente sans mise à jour pendant 48h, il repasse automatiquement en Ouvert pour alerter l'agent.
+
+![1er automatisme – Relance 48h](https://github.com/user-attachments/assets/68cfd8bc-4ce8-4ac5-834c-a0d0acbc0a62)
+
+| Élément | Valeur |
+|---|---|
+| **Condition 1** | Statut du ticket = En attente |
+| **Condition 2** | Temps écoulé depuis mise à jour ≥ 48h |
+| **Action** | Statut → Ouvert |
+
+### Automatisme 2 — Fermeture automatique sans réponse 5 jours
+
+**Logique :** si un ticket reste En attente sans aucune activité pendant 120h (5 jours), il est automatiquement résolu pour éviter l'accumulation de tickets fantômes.
+
+![2ème automatisme – Fermeture auto](https://github.com/user-attachments/assets/0e14da41-5805-4045-aed4-7b1b346fbda9)
+
+| Élément | Valeur |
+|---|---|
+| **Condition 1** | Statut du ticket = En attente |
+| **Condition 2** | Temps écoulé depuis mise à jour ≥ 120h |
+| **Action** | Statut → Résolu |
+
+> **Choix de conception :** ces deux automatismes simulent une gestion SLA réaliste en PME — relance à 48h pour maintenir la qualité de service, fermeture à 5 jours pour assainir la file de tickets.
+
+---
+
 ## 📊 Synthèse
 
 | Ticket | Type | Priorité | Macro utilisée | Résultat |
