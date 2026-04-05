@@ -169,3 +169,8 @@ Vue d'ensemble des 4 tickets résolus dans ce lab :
 - **Secteurs couverts** — PME, startups, médico-social
 
 ---
+
+## Auteure
+
+**Mina OUAAZIZ** — Technicienne Supérieure Systèmes et Réseaux  
+Passionnée par la cybersécurité défensive, l'administration système et le support IT.
