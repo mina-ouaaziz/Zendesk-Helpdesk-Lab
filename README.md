@@ -200,7 +200,105 @@ Les automatismes s'exécutent sur une base de temps, indépendamment des actions
 > **Choix de conception :** ces deux automatismes simulent une gestion SLA réaliste en PME — relance à 48h pour maintenir la qualité de service, fermeture à 5 jours pour assainir la file de tickets.
 
 ---
+---
 
+## 👁️ Vues personnalisées
+
+Les vues permettent aux agents d'organiser leur file de travail en filtrant les tickets selon des critères précis. J'ai créé 3 vues partagées avec tous les agents.
+
+![Tableau de bord des vues](https://github.com/user-attachments/assets/80bc9013-1d2c-406c-92df-d815cb967621)
+
+---
+
+### Vue 1 — 🚨 Tickets urgents non assignés
+
+Affiche tous les tickets de priorité urgente encore non assignés, pour qu'aucun incident critique ne passe inaperçu.
+
+**Configuration :**
+
+![Vue 1 – Conditions](https://github.com/user-attachments/assets/18035773-d1cd-4407-b715-20960d5040f1)
+![Vue 1 – Colonnes](https://github.com/user-attachments/assets/25827d28-0aa6-488a-aacb-1177cca30390)
+
+| Condition | Valeur |
+|---|---|
+| Priorité | Urgente |
+| Assigné | - (non assigné) |
+| Statut | Ouvert |
+
+**Colonnes :** Statut, Sujet, Demandeur, Priorité, Date de la demande, ID
+
+---
+
+### Vue 2 — ⏳ En attente de réponse client
+
+Regroupe tous les tickets en attente d'une réponse utilisateur, pour relancer rapidement si nécessaire.
+
+**Configuration :**
+
+![Vue 2 – Conditions](https://github.com/user-attachments/assets/373cbc6c-fab3-4dcd-8747-954b713cee39)
+![Vue 2 – Colonnes](https://github.com/user-attachments/assets/43abe62b-b196-4325-85a7-44ff53d3f39e)
+
+| Condition | Valeur |
+|---|---|
+| Statut | En attente |
+
+**Colonnes :** Statut, Sujet, Demandeur, Assigné, ID
+
+---
+
+### Vue 3 — ✅ Résolus cette semaine
+
+Affiche les tickets résolus dans les 7 derniers jours (168h) pour le suivi de la performance.
+
+**Configuration :**
+
+![Vue 3 – Conditions](https://github.com/user-attachments/assets/394a199d-f801-4eca-92d0-7d8cbfdef735)
+![Vue 3 – Colonnes](https://github.com/user-attachments/assets/835f10f1-fd73-4adf-8b92-804294031a21)
+
+| Condition | Valeur |
+|---|---|
+| Statut | Résolu |
+| Heures écoulées depuis la résolution | Inférieur à 168h |
+
+**Colonnes :** Statut, Sujet, Demandeur, Assigné, ID
+
+> **Choix de conception :** ces 3 vues couvrent les 3 priorités d'une file support : les urgences non traitées, les tickets en attente de réponse, et le suivi des résolutions hebdomadaires. Elles permettent à un responsable support de piloter l'activité en un coup d'œil.
+
+---
+
+## 📚 Base de connaissances — Centre d'aide
+
+En complément du traitement des tickets, j'ai rédigé 3 articles d'aide utilisateur publiés dans le Centre d'aide Zendesk. L'objectif est de réduire le volume de tickets récurrents en permettant aux utilisateurs de résoudre eux-mêmes les incidents les plus courants.
+
+![Centre d'aide – Vue générale](https://github.com/user-attachments/assets/5f85de48-9dc3-44ee-9b79-f98db3d1d35b)
+
+---
+
+### Article 1 — Comment réinitialiser son mot de passe Windows
+
+Lié au ticket #6 — procédure complète de réinitialisation AD avec vérification d'identité et politique de mot de passe.
+
+![Article – Reset mot de passe](https://github.com/user-attachments/assets/6f83c91b-d23c-4b23-9009-99ca869caf69)
+
+---
+
+### Article 2 — Comment demander l'installation d'un logiciel
+
+Lié au ticket #9 — procédure de demande, validation et installation à distance, avec rappel des règles de sécurité.
+
+![Article – Installation logiciel](https://github.com/user-attachments/assets/916abb3a-dded-42dc-af45-c55b14a710ad)
+
+---
+
+### Article 3 — Que faire si le VPN ne se connecte pas
+
+Lié au ticket #7 — guide de diagnostic autonome en 4 étapes avant de contacter le support.
+
+![Article – VPN](https://github.com/user-attachments/assets/aa781148-0516-475c-85d9-2be16ca9854d)
+
+> **Choix de conception :** chaque article est directement lié à un ticket traité dans ce lab, créant une cohérence ticket → résolution → documentation. Cette approche self-service est une bonne pratique en support IT pour réduire la charge N1 sur les incidents répétitifs.
+
+---
 ## 📊 Synthèse
 
 | Ticket | Type | Priorité | Macro utilisée | Résultat |
