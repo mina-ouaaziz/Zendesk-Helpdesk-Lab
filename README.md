@@ -323,5 +323,4 @@ Lié au ticket #7 — guide de diagnostic autonome en 4 étapes avant de contact
 
 ## Auteure
 
-**Mina OUAAZIZ** — Technicienne Supérieure Systèmes et Réseaux  
-Passionnée par la cybersécurité défensive, l'administration système et le support IT.
+**Mina OUAAZIZ** — Remote Support IT & Customer Care | Près de 10 ans de rigueur opérationnelle appliquée à la tech | Passionnée par la cybersécurité défensive (pratique TryHackMe)
